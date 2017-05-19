@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -18,19 +20,21 @@ import butterknife.ButterKnife;
 public class MainFeedAdapter extends BaseAdapter{
 
     private LayoutInflater mInflater;
+    private List<FeedItem> mFeedItems;
 
-    public MainFeedAdapter(Context context) {
+    public MainFeedAdapter(Context context, List<FeedItem> feedItems) {
         this.mInflater = LayoutInflater.from(context);
+        this.mFeedItems = feedItems;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return mFeedItems.size();
     }
 
     @Override
-    public Object getItem(int location) {
-        return null;
+    public FeedItem getItem(int location) {
+        return mFeedItems.get(location);
     }
 
     @Override
@@ -50,7 +54,9 @@ public class MainFeedAdapter extends BaseAdapter{
             view.setTag(holder);
         }
 
-
+        holder.tvTopic.setText(getItem(position).topic);
+        holder.btnUpVote.setText("UpVote ("+getItem(position).upvote+")");
+        holder.btnDownVote.setText("DownVote ("+getItem(position).downvote+")");
 
         return view;
     }
