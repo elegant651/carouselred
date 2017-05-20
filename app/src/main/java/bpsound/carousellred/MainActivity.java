@@ -31,6 +31,19 @@ public class MainActivity extends AppCompatActivity {
 
         mListItems = new ArrayList<>();
         mListAdapter = new MainFeedAdapter(this, mListItems);
+        mListAdapter.setOnListener(new MainFeedAdapter.OnListener() {
+            @Override
+            public void upVote(FeedItem item) {
+                item.upvote += 1;
+                sortList();
+            }
+
+            @Override
+            public void downVote(FeedItem item) {
+                item.downvote += 1;
+                sortList();
+            }
+        });
         mLvMain.setAdapter(mListAdapter);
     }
 

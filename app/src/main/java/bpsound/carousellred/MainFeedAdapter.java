@@ -21,6 +21,7 @@ public class MainFeedAdapter extends BaseAdapter{
 
     private LayoutInflater mInflater;
     private List<FeedItem> mFeedItems;
+    private OnListener mListener;
 
     public MainFeedAdapter(Context context, List<FeedItem> feedItems) {
         this.mInflater = LayoutInflater.from(context);
@@ -43,7 +44,7 @@ public class MainFeedAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
         ViewHolder holder;
 
         if(view != null) {
@@ -58,6 +59,24 @@ public class MainFeedAdapter extends BaseAdapter{
         holder.btnUpVote.setText("UpVote ("+getItem(position).upvote+")");
         holder.btnDownVote.setText("DownVote ("+getItem(position).downvote+")");
 
+        holder.btnUpVote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mListener!=null){
+                    mListener.upVote(getItem(position));
+                }
+            }
+        });
+
+        holder.btnDownVote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mListener!=null){
+                    mListener.downVote(getItem(position));
+                }
+            }
+        });
+
         return view;
     }
 
@@ -69,5 +88,14 @@ public class MainFeedAdapter extends BaseAdapter{
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
+    }
+
+    public void setOnListener(OnListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface OnListener {
+        void upVote(FeedItem item);
+        void downVote(FeedItem item);
     }
 }
