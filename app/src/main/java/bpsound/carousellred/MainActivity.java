@@ -47,7 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSubmit)
     public void onSubmitPost() {
-
-        
+        String post = mEtPost.getText().toString();
+        if(post.length()>0){
+            FeedItem item = new FeedItem(post, 0, 0);
+            mListItems.add(item);
+            sortList();
+        }
     }
 }
