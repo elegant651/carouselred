@@ -1,0 +1,8 @@
+- Reddit for carousell
+
+- FeedItem : The item class for each feed item
+- MainActivity : Main activity for run to the app. Contain to the process as init adapter, sort list and new post.	
+- MainFeedAdapter : The adapter for listview. Adapt to viewholder pattern for reusing ui elements. Used to view-observer pattern for clicking upvotes and downvotes in each field.
+	
+
+= using library: butterknife(https://github.com/JakeWharton/butterknife). To minimize the boilerplate codes, more easily binding ui elements.
