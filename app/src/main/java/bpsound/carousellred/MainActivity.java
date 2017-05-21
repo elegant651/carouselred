@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         final Comparator<FeedItem> comparator = new Comparator<FeedItem>() {
             @Override
             public int compare(FeedItem o1, FeedItem o2) {
-                return (o1.upvote-o2.upvote);
+                return (o2.upvote-o1.upvote);
             }
         };
         Collections.sort(mListItems, comparator);
