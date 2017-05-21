@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     public void onSubmitPost() {
         String post = mEtPost.getText().toString();
         if(post.length()>0){
+            mEtPost.setText("");
+
             FeedItem item = new FeedItem(post, 0, 0);
             mListItems.add(item);
             sortList();
