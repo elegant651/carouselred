@@ -17,6 +17,10 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*
+        To minimize the boilerplate codes, used butterknife library(https://github.com/JakeWharton/butterknife) to bind ui elements.
+     */
+
     @BindView(R.id.lvMain) ListView mLvMain;
     @BindView(R.id.etPost) EditText mEtPost;
 
@@ -29,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        initAdapter();
+    }
+
+    /*
+        initialize and set listener to the adapter by using observer pattern.
+        if upvote or downvote has proceed in each feed, update to the data in item then it proceed to sort list.
+     */
+    private void initAdapter(){
         mListItems = new ArrayList<>();
         mListAdapter = new MainFeedAdapter(this, mListItems);
         mListAdapter.setOnListener(new MainFeedAdapter.OnListener() {
@@ -47,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         mLvMain.setAdapter(mListAdapter);
     }
 
+    /*
+        sort list by upvote descending then notify as datasetchanged to adapter
+     */
     private void sortList() {
         final Comparator<FeedItem> comparator = new Comparator<FeedItem>() {
             @Override
@@ -58,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
         mListAdapter.notifyDataSetChanged();
     }
 
+    /*
+        Once button called 'Submit' clicked, if field in edittext is not blank,
+         create new item and added it to the list.
+         Then, it proceed to sort list.
+     */
     @OnClick(R.id.btnSubmit)
     public void onSubmitPost() {
         String post = mEtPost.getText().toString();

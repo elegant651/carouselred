@@ -2,6 +2,7 @@ package bpsound.carousellred;
 
 /**
  * Created by elegantuniv on 2017. 5. 19..
+ * The item class for each feed item.
  */
 
 public class FeedItem {

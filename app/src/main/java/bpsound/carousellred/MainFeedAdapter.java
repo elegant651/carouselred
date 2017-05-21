@@ -15,6 +15,8 @@ import butterknife.ButterKnife;
 
 /**
  * Created by elegantuniv on 2017. 5. 19..
+ * The adapter for listview
+ * Adapt to viewholder pattern for reusing ui elements
  */
 
 public class MainFeedAdapter extends BaseAdapter{
@@ -90,6 +92,9 @@ public class MainFeedAdapter extends BaseAdapter{
         }
     }
 
+    /*
+        View-observer pattern
+     */
     public void setOnListener(OnListener listener) {
         this.mListener = listener;
     }
